@@ -1,0 +1,99 @@
+---
+title: "Prueba de Evaluación Continua 1 (PEC1)"
+subtitle: "Análisis de datos ómicos. Curso 2024/2025. Máster en Bioinformática y Bioestadística UOC-UB"
+author: "María Climent Pellicer"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true   # Índice automático.
+    toc_depth: 3    # Número de secciones.
+    number_sections: true   # Numeración de secciones automática.
+    theme: united   # Diseño.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# *Abstract* o resumen
+
+Hola
+
+# Objetivos
+
+Hola
+
+# Métodos
+
+En primer lugar, se ha instalado el paquete 'BiocManager', que contiene la clase 'SummarizedExperiment'.
+
+```{r}
+# Se instala el paquete 'BiocManager' si no está instalado previamente:
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Se instala la clase 'SummarizedExperiment' si no está instalado previamente:
+if (!requireNamespace("SummarizedExperiment", quietly = TRUE))
+    BiocManager::install("SummarizedExperiment")
+```
+
+## A continuación, se crea un objeto de clase 'SummarizedExperiment' que contenga los datos y los metadatos (información acerca del *dataset*, sus filas y columnas).
+
+```{r, attr.warning=FALSE}
+setwd('/Users/maria/Desktop/PEC1')
+
+# Se carga la librería:
+library(SummarizedExperiment)
+
+# Se lee el *dataset* 'human_cachexia.csv':
+datos <- read.csv("metaboData/Datasets/2024-Cachexia/human_cachexia.csv", row.names = 1)
+
+# Se crean metadatos mínimos (ya que no hay información de muestras en el archivo 'description.md'):
+metadatos <- data.frame(
+    sample = colnames(datos)
+)
+rownames(metadatos) <- metadatos$sample
+
+# Se crea el objeto de clase 'SummarizedExperiment':
+se <- SummarizedExperiment(
+    assays = list(counts = as.matrix(datos)),
+    colData = metadatos
+)
+
+# Se muestra el objeto completo:
+se
+```
+
+```{r}
+assay(se)
+```
+
+## La clase 'SummarizedExperiment' es una extensión de 'ExpressionSet' utilizada por muchas aplicaciones y bases de datos. ¿Cuáles son sus principales diferencias con la clase 'ExpressionSet'?
+
+La clase 'SummarizedExperiment' es una extensión moderna y más flexible de 'ExpressionSet'. Mientras que 'ExpressionSet' únicamente permite almacenar una única matriz de expresión junto a metadatos fenotípicos y de características, 'SummarizedExperiment' admite múltiples matrices ('assays') y ofrece una organización más clara y modular de los metadatos mediante 'colData' y 'rowData'. Además, 'SummarizedExperiment' es actualmente la base estructural preferida por la mayoría de las herramientas de análisis bioinformático modernas.
+
+## Llevad a cabo un análisis exploratorio que os proporcione una visión general del *dataset* en la línea de lo que hemos visto en las actividades de este reto.
+
+```{r}
+
+```
+
+# Resultados
+
+Hola
+
+```{r}
+
+```
+
+# Discusión
+
+Hola
+
+# Conclusiones
+
+Hola
+
+# Referencias
+
+Hola
